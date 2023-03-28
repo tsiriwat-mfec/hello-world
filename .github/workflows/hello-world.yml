@@ -16,6 +16,6 @@ jobs:
           password: ${{ secrets.TOKEN }}
       - name: Build Run Push Docker image
         run: |
-               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
-               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
-               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
+               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:${{ GITHUB_SHA }}
+               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:${{ GITHUB_SHA }}
+               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:${{ GITHUB_SHA }}
