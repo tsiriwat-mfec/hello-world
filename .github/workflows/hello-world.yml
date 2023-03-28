@@ -10,9 +10,9 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.TOKEN }}
       - name: Build Run Push Docker image
-      run: |
-             docker build . --tag ghcr.io/tsiriwat-mfec/hello-golf:latest
-             docker run ghcr.io/tsiriwat-mfec/hello-golf:latest
-             docker push ghcr.io/tsiriwat-mfec/hello-golf:latest
+        run: |
+               docker build . --tag ghcr.io/tsiriwat-mfec/hello-golf:latest
+               docker run ghcr.io/tsiriwat-mfec/hello-golf:latest
+               docker push ghcr.io/tsiriwat-mfec/hello-golf:latest
