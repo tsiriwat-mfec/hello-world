@@ -13,6 +13,6 @@ jobs:
           password: ${{ secrets.TOKEN }}
       - name: Build Run Push Docker image
         run: |
-               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:latest
-               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:latest
-               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:latest
+               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:dev
+               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:dev
+               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:dev
