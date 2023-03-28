@@ -5,6 +5,8 @@ on:
       - main
 jobs:
   publish-hello-world-docker-image:
+    env:
+      TEST_ENV: "5555555555555"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,8 +17,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
       - name: Build Run Push Docker image
-        env:
-          TEST_ENV: "5555555555555"
         run: |
                docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
                docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
