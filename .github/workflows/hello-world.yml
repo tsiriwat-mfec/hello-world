@@ -1,5 +1,8 @@
 name: hello-world-action
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 jobs:
   publish-hello-world-docker-image:
     runs-on: ubuntu-latest
@@ -13,6 +16,6 @@ jobs:
           password: ${{ secrets.TOKEN }}
       - name: Build Run Push Docker image
         run: |
-               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:latest
-               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:latest
-               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:latest
+               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
+               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
+               docker push ghcr.io/tsiriwat-mfec/action-hello-golf:${{GITHUB_SHA}}
