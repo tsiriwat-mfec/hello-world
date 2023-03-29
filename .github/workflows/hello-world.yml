@@ -17,6 +17,16 @@ jobs:
           build-args: |
             TEST_ENV: "5555555555555"
       - name: Build Run Push Docker image
+        uses: depot/build-push-action@v1
+        with:
+          context: .
+          push: true
+          platforms: linux/arm64,linux/amd64
+          build-args: |
+            TEST_ENV: "5555555555555"
+          tags: |
+            ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+      - name: Pull & Run Docker image
         run: |
-               docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
-               docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+               docker pull ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+               docker run action-hello-golf
