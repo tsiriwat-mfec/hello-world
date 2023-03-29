@@ -8,6 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Print branch name
+        run: |
+          echo 'The branch name is $(echo ${GITHUB_REF#refs/heads/})' $(echo ${GITHUB_REF#refs/heads/})
+          echo 'The branch name is GITHUB_REF' $GITHUB_REF
+          
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -22,7 +27,7 @@ jobs:
           push: true
           build-args: |
             TEST_ENV=123-$GITHUB_REF_NAME-${{ vars.TEST_ENV }}
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-$(echo ${GITHUB_REF#refs/heads/})
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
           
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$(echo ${GITHUB_REF#refs/heads/})
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
