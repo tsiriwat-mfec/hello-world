@@ -22,7 +22,7 @@ jobs:
           push: true
           build-args: |
             TEST_ENV=$GITHUB_REF_NAME-${{ vars.TEST_ENV }}
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-${GITHUB_REF##*/}
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-$(echo ${GITHUB_REF#refs/heads/})
           
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:${GITHUB_REF##*/}
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$(echo ${GITHUB_REF#refs/heads/})
