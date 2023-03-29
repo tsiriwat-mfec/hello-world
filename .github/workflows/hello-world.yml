@@ -17,5 +17,5 @@ jobs:
           
       - name: Build Run Push Docker image
         run: |
-               docker build -e TEST_ENV=5555555555555 . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+               docker build . --build-arg TEST_ENV=5555555555555 --tag ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
                docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
