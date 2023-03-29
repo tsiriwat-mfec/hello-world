@@ -1,7 +1,7 @@
 name: hello-world-action
 on: 
   pull_request:
-    branches: [mfec-dev]
+    branches: [main, mfec-dev]
 jobs:
   publish-hello-world-docker-image:
     runs-on: ubuntu-latest
@@ -21,8 +21,8 @@ jobs:
           context: .
           push: true
           build-args: |
-            TEST_ENV=mfec-dev
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
+            TEST_ENV=$GITHUB_REF_NAME-${{ vars.TEST_ENV }}
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-${{github.ref_name}}
           
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:${{github.ref_name}}
