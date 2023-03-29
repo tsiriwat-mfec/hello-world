@@ -2,9 +2,9 @@
 
 FROM alpine:latest
 
-ARG TEST_ENV=${TEST_ENV}
+ARG TEST_ENV
 
-ENV TEST_ENV=${TEST_ENV}
+ENV TEST_ENV=${TEST_ENV:-123}
 
 
 COPY entrypoint.sh .
