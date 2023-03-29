@@ -18,9 +18,11 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          push: false
+          push: true
           build-args: |
             TEST_ENV: vars.TEST_ENV-${{ vars.TEST_ENV }}
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:latest
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:123
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:latest
+        run: |
+          docker pull ghcr.io/tsiriwat-mfec/action-hello-golf:123
+          docker run ghcr.io/tsiriwat-mfec/action-hello-golf:123
