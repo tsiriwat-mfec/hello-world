@@ -1,8 +1,7 @@
 name: hello-world-action
 on: 
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [mfec-dev]
 jobs:
   publish-hello-world-docker-image:
     runs-on: ubuntu-latest
@@ -16,14 +15,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
           
-      - name: Build and push
+      - name: Build and Push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
           build-args: |
-            TEST_ENV=vars.TEST_ENV-${{ vars.TEST_ENV }}
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:123
+            TEST_ENV=${{ vars.TEST_ENV }}
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
           
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:123
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
