@@ -21,6 +21,6 @@ jobs:
           push: false
           build-args: |
             TEST_ENV: vars.TEST_ENV-${{ vars.TEST_ENV }}
-          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+          tags: ghcr.io/tsiriwat-mfec/action-hello-golf:latest
       - name: Run Docker image
-        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:latest
