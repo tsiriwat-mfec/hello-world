@@ -8,21 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
+          
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
           build-args: |
-            TEST_ENV: vars.TEST_ENV-${{ vars.TEST_ENV }}
+            TEST_ENV=vars.TEST_ENV-${{ vars.TEST_ENV }}
           tags: ghcr.io/tsiriwat-mfec/action-hello-golf:123
+          
       - name: Run Docker image
-        run: |
-          docker pull ghcr.io/tsiriwat-mfec/action-hello-golf:123
-          docker run ghcr.io/tsiriwat-mfec/action-hello-golf:123
+        run: docker run ghcr.io/tsiriwat-mfec/action-hello-golf:123
