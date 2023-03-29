@@ -9,13 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Login to GitHub Container Registry
-        env:
-          TEST_ENV: "5555555555555"
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
+          build-args: |
+            TEST_ENV: "5555555555555"
       - name: Build Run Push Docker image
         run: |
                docker build . --tag ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
