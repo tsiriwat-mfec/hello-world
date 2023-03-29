@@ -17,7 +17,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: push
+          push: false
           build-args: |
             TEST_ENV: vars.TEST_ENV-${{ vars.TEST_ENV }}
           tags: ghcr.io/tsiriwat-mfec/action-hello-golf:$GITHUB_SHA
