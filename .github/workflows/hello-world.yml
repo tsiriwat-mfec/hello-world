@@ -21,7 +21,7 @@ jobs:
           context: .
           push: true
           build-args: |
-            TEST_ENV=${{ vars.TEST_ENV }}
+            TEST_ENV=mfec-dev
           tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-dev
           
       - name: Run Docker image
