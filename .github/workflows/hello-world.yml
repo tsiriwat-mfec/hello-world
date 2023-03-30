@@ -65,7 +65,7 @@ jobs:
           context: .
           push: true
           build-args: |
-            TEST_ENV=123-$GITHUB_REF_NAME-$GITHUB_HEAD_REF
+            TEST_ENV=123-${{ vars.TEST_ENV }}
           tags: ghcr.io/tsiriwat-mfec/action-hello-golf:mfec-${{ github.head_ref }}
           
       - name: Run Docker image
